@@ -7,7 +7,6 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { StreamChat } from "npm:stream-chat";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
-console.log("Hello from Functions!");
 
 Deno.serve(async (req: Request) => {
   const supabaseClient = createClient(

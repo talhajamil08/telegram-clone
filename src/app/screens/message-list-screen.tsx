@@ -13,10 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const MessageListScreen = () => {
   const route = useRoute<any>();
   const { cid } = route.params;
-  console.log('cid',cid)
   const [channel, setChannel] = useState<ChannelType | null>(null);
-
-  console.log('channel',channel)
 
   const { client } = useChatContext();
 
