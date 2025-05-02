@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "telegram-clone",
+    "slug": "telegram-clone",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "my-telegram-clone",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "$(PRODUCT_NAME) would like to use your microphone for voice recording."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "$(PRODUCT_NAME) would like to use your camera to share image in a message."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "$(PRODUCT_NAME) would like access to your photo gallery to share image in a message.",
+          "savePhotosPermission": "$(PRODUCT_NAME) would like to save photos to your photo gallery after downloading from a message."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
