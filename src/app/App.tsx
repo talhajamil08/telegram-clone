@@ -9,6 +9,8 @@ import Auth from "./screens/auth-screen";
 import { AuthProvider, useAuth } from "./providers/auth-provider";
 import ContactsScreen from "./screens/contacts-screen";
 import { PermissionsAndroid, Platform } from "react-native";
+import CallScreen from "./screens/call-screen";
+import VideoProvider from "./providers/video-provider";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +21,7 @@ function RootStack() {
     <Stack.Navigator>
       {user ? (
         <>
+          <Stack.Screen name="Call" component={CallScreen} />
           <Stack.Screen
             name="Home"
             component={Home}
@@ -26,6 +29,7 @@ function RootStack() {
           />
           <Stack.Screen name="MessageList" component={MessageListScreen} />
           <Stack.Screen name="Contacts" component={ContactsScreen} />
+          {/* <Stack.Screen name="Call" component={CallScreen} /> */}
         </>
       ) : (
         <Stack.Screen
@@ -54,9 +58,11 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <AuthProvider>
         <ChatProviderComponent>
-          <NavigationContainer>
-            <RootStack />
-          </NavigationContainer>
+          <VideoProvider>
+            <NavigationContainer>
+              <RootStack />
+            </NavigationContainer>
+          </VideoProvider>
         </ChatProviderComponent>
       </AuthProvider>
     </GestureHandlerRootView>
