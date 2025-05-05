@@ -8,6 +8,7 @@ import ChatProviderComponent from "./providers/chat-provider.component";
 import Auth from "./screens/auth-screen";
 import { AuthProvider, useAuth } from "./providers/auth-provider";
 import ContactsScreen from "./screens/contacts-screen";
+import { PermissionsAndroid, Platform } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,16 +38,26 @@ function RootStack() {
   );
 }
 
-
 export default function App() {
+  React.useEffect(() => {
+    const run = async () => {
+      if (Platform.OS === "android") {
+        await PermissionsAndroid.requestMultiple([
+          PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+          PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+        ]);
+      }
+    };
+    run();
+  }, []);
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <AuthProvider>
-      <ChatProviderComponent>
-        <NavigationContainer>
-          <RootStack />
-        </NavigationContainer>
-      </ChatProviderComponent>
+        <ChatProviderComponent>
+          <NavigationContainer>
+            <RootStack />
+          </NavigationContainer>
+        </ChatProviderComponent>
       </AuthProvider>
     </GestureHandlerRootView>
   );
